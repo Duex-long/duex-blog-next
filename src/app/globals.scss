@@ -168,8 +168,20 @@ body {
         &:nth-child(1):checked {
           &~.Jumbotron__introduct {
             .Jumbotron__introduct-card:nth-child(1) {
-              background: blue;
-              content-visibility: visible;
+              // content-visibility: visible;
+              // display: block;
+              visibility: visible;
+
+              .Ucard {
+                &-avatar {
+                  animation: avatarIn .8s ease 0s 1 forwards;
+                }
+
+                &-name {
+                  animation: avatarIn .8s ease .6s 1 forwards;
+                }
+
+              }
             }
           }
 
@@ -187,8 +199,7 @@ body {
         &:nth-child(2):checked {
           &~.Jumbotron__introduct {
             .Jumbotron__introduct-card:nth-child(2) {
-              background: red;
-              content-visibility: visible;
+              visibility: visible;
             }
           }
 
@@ -214,32 +225,34 @@ body {
           position: absolute;
           left: 20px;
           top: 10px;
-          transition: all .3s ease-out 0s;
           height: 100%;
           width: 100%;
-          content-visibility: hidden;
+          visibility: hidden;
+
 
           .Ucard {
             position: relative;
             width: 100%;
             height: 100%;
+            display: flex;
+            flex-direction: column;
 
             &-avatar {
-              width: 80px;
-              height: 80px;
-              background: black;
-              animation: avatarIn .8s ease 0s infinite forwards;
+              height: 5em;
+              width: 6em;
+              background: url('/static/image/avatar.png') no-repeat center center;
+              background-size: contain;
+              background-position: center center;
             }
 
-            @keyframes avatarIn {
-              0% {
-                transform: translateX(0px) scale(0);
-              }
-
-              100% {
-                transform: translateX(80px) scale(1);
-              }
+            &-name {
+              display: block;
+              height: 60px;
+              width: 260px;
+              transform: scale(0);
             }
+
+
           }
         }
 
@@ -343,5 +356,15 @@ body {
 
   100% {
     transform: translateY(0px);
+  }
+}
+
+@keyframes avatarIn {
+  0% {
+    transform: translateX(-50px) scale(0);
+  }
+
+  100% {
+    transform: translateX(150px) scale(1) perspective(800px) rotateY(-25deg);
   }
 }
